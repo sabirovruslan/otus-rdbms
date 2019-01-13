@@ -1,0 +1,21 @@
+# PyCharm
+.idea
+
+# Mac OS artifacts
+.DS_Store
+
+# Everything of log files
+*.log
+run.sh.err
+run.sh.out
+
+# Python artifacts
+venv
+env
+logs
+__pycache__
+
+# New artifacts
+*~
+.vscode
+.cache
