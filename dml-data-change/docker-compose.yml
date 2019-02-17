@@ -1,0 +1,23 @@
+version: "3.3"
+
+services:
+  dml-mysql:
+    container_name: ${CONTAINER_NAME}
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    networks:
+      - db_shared
+    volumes:
+      - "./db:/var/lib/mysql"
+      - "./dump:/docker-entrypoint-initdb.d"
+    ports:
+      - 7306:3306
+
+networks:
+  db_shared:
+    driver: bridge
