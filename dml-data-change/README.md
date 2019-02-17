@@ -1,4 +1,4 @@
-# ddl-create-models
+# dml-data-change
 
 Перед запуском убедится что установлены пакеты docker и docker-compose
 В файле .env указаны данные пользователя и БД
