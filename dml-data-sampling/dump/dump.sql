@@ -1,8 +1,9 @@
--- MySQL dump 10.13  Distrib 5.7.23, for Linux (x86_64)
+mysqldump: [Warning] Using a password on the command line interface can be insecure.
+-- MySQL dump 10.13  Distrib 5.7.25, for Linux (x86_64)
 --
 -- Host: localhost    Database: restaurant
 -- ------------------------------------------------------
--- Server version	5.7.23
+-- Server version	5.7.25
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -37,7 +38,7 @@ CREATE TABLE `account` (
   CONSTRAINT `fk_account_discount_id` FOREIGN KEY (`discount_id`) REFERENCES `discount` (`id`),
   CONSTRAINT `fk_account_status_id` FOREIGN KEY (`status_id`) REFERENCES `account_dictionary` (`id`),
   CONSTRAINT `fk_payment_type_id` FOREIGN KEY (`payment_type_id`) REFERENCES `payment_type` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,6 +47,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
+INSERT INTO `account` VALUES (1,0.00,NULL,2,1,'2019-02-23 11:55:00','2019-02-23 11:55:00');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -64,7 +66,7 @@ CREATE TABLE `account_dictionary` (
   PRIMARY KEY (`id`),
   KEY `idx_name` (`name`),
   KEY `idx_code` (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -73,6 +75,7 @@ CREATE TABLE `account_dictionary` (
 
 LOCK TABLES `account_dictionary` WRITE;
 /*!40000 ALTER TABLE `account_dictionary` DISABLE KEYS */;
+INSERT INTO `account_dictionary` VALUES (1,'status new','new',NULL),(2,'status cancel','cancel',NULL),(3,'status paid','paid',NULL);
 /*!40000 ALTER TABLE `account_dictionary` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,7 +99,7 @@ CREATE TABLE `client` (
   KEY `idx_surname_name` (`surname`,`name`),
   KEY `idx_fk_discount_id` (`discount_id`),
   CONSTRAINT `fk_discount_id` FOREIGN KEY (`discount_id`) REFERENCES `discount` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -105,6 +108,7 @@ CREATE TABLE `client` (
 
 LOCK TABLES `client` WRITE;
 /*!40000 ALTER TABLE `client` DISABLE KEYS */;
+INSERT INTO `client` VALUES (1,'Test','Sidorov','79281001010',NULL,'2019-02-23 11:54:59','2019-02-23 11:54:59');
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -119,7 +123,7 @@ CREATE TABLE `discount` (
   `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `value` tinyint(3) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -128,6 +132,7 @@ CREATE TABLE `discount` (
 
 LOCK TABLES `discount` WRITE;
 /*!40000 ALTER TABLE `discount` DISABLE KEYS */;
+INSERT INTO `discount` VALUES (1,5),(2,10),(3,3),(4,15),(5,20);
 /*!40000 ALTER TABLE `discount` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -147,7 +152,7 @@ CREATE TABLE `dish` (
   PRIMARY KEY (`id`),
   KEY `idx_name` (`name`),
   KEY `idx_price` (`price`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -156,6 +161,7 @@ CREATE TABLE `dish` (
 
 LOCK TABLES `dish` WRITE;
 /*!40000 ALTER TABLE `dish` DISABLE KEYS */;
+INSERT INTO `dish` VALUES (1,'Salat',500.00,'2019-02-23 11:57:12','2019-02-23 11:57:12'),(2,'Sup',450.00,'2019-02-23 11:57:27','2019-02-23 11:57:27');
 /*!40000 ALTER TABLE `dish` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -187,7 +193,7 @@ CREATE TABLE `order` (
   CONSTRAINT `fk_client_id` FOREIGN KEY (`client_id`) REFERENCES `client` (`id`),
   CONSTRAINT `fk_status_id` FOREIGN KEY (`status_id`) REFERENCES `order_dictionary` (`id`),
   CONSTRAINT `fk_waiter_id` FOREIGN KEY (`waiter_id`) REFERENCES `waiter` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -196,6 +202,7 @@ CREATE TABLE `order` (
 
 LOCK TABLES `order` WRITE;
 /*!40000 ALTER TABLE `order` DISABLE KEYS */;
+INSERT INTO `order` VALUES (1,3,'2019-02-23 11:55:00','2019-02-23 11:55:00',1,1,1,1,'2019-02-23 11:55:00','2019-02-23 11:55:00');
 /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -214,7 +221,7 @@ CREATE TABLE `order_dictionary` (
   PRIMARY KEY (`id`),
   KEY `idx_name` (`name`),
   KEY `idx_code` (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -223,6 +230,7 @@ CREATE TABLE `order_dictionary` (
 
 LOCK TABLES `order_dictionary` WRITE;
 /*!40000 ALTER TABLE `order_dictionary` DISABLE KEYS */;
+INSERT INTO `order_dictionary` VALUES (1,'status new','new',NULL),(2,'status cancel','cancel',NULL),(3,'status completed','completed',NULL);
 /*!40000 ALTER TABLE `order_dictionary` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -253,6 +261,7 @@ CREATE TABLE `order_dishes` (
 
 LOCK TABLES `order_dishes` WRITE;
 /*!40000 ALTER TABLE `order_dishes` DISABLE KEYS */;
+INSERT INTO `order_dishes` VALUES (1,1,2,'2019-02-23 11:57:49','2019-02-23 11:57:49'),(1,2,1,'2019-02-23 11:58:12','2019-02-23 11:58:12');
 /*!40000 ALTER TABLE `order_dishes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -282,6 +291,7 @@ CREATE TABLE `order_tables` (
 
 LOCK TABLES `order_tables` WRITE;
 /*!40000 ALTER TABLE `order_tables` DISABLE KEYS */;
+INSERT INTO `order_tables` VALUES (1,1,'2019-02-23 11:56:19','2019-02-23 11:56:19');
 /*!40000 ALTER TABLE `order_tables` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -301,7 +311,7 @@ CREATE TABLE `payment_type` (
   PRIMARY KEY (`id`),
   KEY `idx_name` (`name`),
   KEY `idx_code` (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -310,6 +320,7 @@ CREATE TABLE `payment_type` (
 
 LOCK TABLES `payment_type` WRITE;
 /*!40000 ALTER TABLE `payment_type` DISABLE KEYS */;
+INSERT INTO `payment_type` VALUES (1,'cashless_payment','cashless_payment','2019-02-23 11:54:59','2019-02-23 11:54:59'),(2,'cash','cash','2019-02-23 11:54:59','2019-02-23 11:54:59');
 /*!40000 ALTER TABLE `payment_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -326,7 +337,7 @@ CREATE TABLE `restaurant_table` (
   `number_seats` tinyint(3) unsigned NOT NULL DEFAULT '2',
   PRIMARY KEY (`id`),
   KEY `idx_number_seats` (`number_seats`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -335,6 +346,7 @@ CREATE TABLE `restaurant_table` (
 
 LOCK TABLES `restaurant_table` WRITE;
 /*!40000 ALTER TABLE `restaurant_table` DISABLE KEYS */;
+INSERT INTO `restaurant_table` VALUES (1,'table 1',2),(2,'table 2',3),(3,'table 3',1),(4,'table 4',4);
 /*!40000 ALTER TABLE `restaurant_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -353,7 +365,7 @@ CREATE TABLE `waiter` (
   `update_at` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `idx_surname_name` (`surname`,`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -362,6 +374,7 @@ CREATE TABLE `waiter` (
 
 LOCK TABLES `waiter` WRITE;
 /*!40000 ALTER TABLE `waiter` DISABLE KEYS */;
+INSERT INTO `waiter` VALUES (1,'Igor','Ivanov','2019-02-23 11:54:59','2019-02-23 11:54:59');
 /*!40000 ALTER TABLE `waiter` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -374,4 +387,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-02-10 15:26:05
+-- Dump completed on 2019-02-23 17:55:15
