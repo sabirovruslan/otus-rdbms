@@ -61,3 +61,16 @@ delete from payment_type where code='cashless_payment'
 -- Вставка и обновление
 insert into restaurant_table (id, name, number_seats)
   values (1, 'table test', 2) on duplicate key update number_seats=number_seats+1;
+
+
+-- Очистка данных
+
+delete from `order`;
+delete from account;
+delete from account_dictionary;
+delete from account_dictionary;
+delete from order_dictionary;
+delete from payment_type;
+delete from waiter;
+delete from client;
+delete from restaurant_table;
