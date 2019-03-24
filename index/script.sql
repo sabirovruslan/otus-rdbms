@@ -5,9 +5,11 @@ use `restaurant`;
 create index idx_begin_and_finish_dates
 	on `order` (begin_date, finish_date);
 
+# Для поиска блюда по его названию при добавлении его в заказ
 create index idx_name
 	on `dish` (name);
 
+# Для поиска по цене, скорее всего не будет использоватся
 create index idx_price
 	on `dish` (price);
 
@@ -17,12 +19,15 @@ create index idx_fk_order_dishes_dish
 create index idx_fk_order_id
 	on order_dishes (order_id);
 
+# Для поиска сотрудника по фамилии и имени. Для оформления заказа или состовления отчетов по сотруднику
 create index idx_surname_name
 	on waiter (surname, name);
 
+# Для поиска клиента по телефону для проверки наличия заказа, составления отчетов. Кардиналити низкая
 create index idx_phone
 	on  client (phone);
 
+# Для поиска клиента по фамилии и имени. Для оформления заказа или состовления отчетов. Кардиналити средняя
 create index idx_surname_name
 	on client (surname, name);
 
@@ -38,12 +43,15 @@ create index idx_fk_account_dictionary2
 create index idx_fk_account_discount
 	on account (discount_id);
 
+# по типу платежа, тк их мало скорее всего оптимизатор использовать не будет
 create index idx_name
   on payment_type (name);
 
+# по типу платежа, тк их мало скорее всего оптимизатор использовать не будет
 create index idx_code
   on payment_type (code);
 
+# поиск столиков по количеству мест, кардиналити средняя
 create index idx_number_seats
 	on restaurant_table (number_seats);
 
@@ -53,6 +61,8 @@ create index idx_fk_order_tables_order
 create index idx_fk_order_tables_table
 	on order_tables (table_id);
 
+# для поиска статуса по названию, кардиналити низкая,
+# но я думаю оптимизатор этот индех использовать не будет
 create index idx_name
 	on order_dictionary (name);
 
@@ -70,7 +80,10 @@ create index idx_code
 
 use voip;
 
+# для группировки, кардиналити высокая
 create index idx_db_date on CDR (BILL_DATE, BILL_TIME);
+
+# для фильтрации по цене, кардиналити средняя
 create index idx_price on CDR (price);
 create index idx_rate_t on CDR (rate_t);
 create index idx_rate_o on CDR (rate_o);
