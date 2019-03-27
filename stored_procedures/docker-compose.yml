@@ -16,7 +16,7 @@ services:
       - "./db:/var/lib/mysql"
       - "./dump:/docker-entrypoint-initdb.d"
     ports:
-      - 7306:3306
+      - 9306:3306
 
 networks:
   db_shared:
